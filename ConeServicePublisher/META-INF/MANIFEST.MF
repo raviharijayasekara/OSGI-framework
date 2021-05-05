@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ConeVolumeService
-Bundle-SymbolicName: ConeVolumeService
+Bundle-Name: ConeServicePublisher
+Bundle-SymbolicName: ConeServicePublisher
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: conevolumeservice.ConeVolumeActivator
-Export-Package: conevolumeservice
+Bundle-Activator: coneservice.ConeActivator
+Export-Package: coneservice
 Import-Package: org.osgi.framework
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

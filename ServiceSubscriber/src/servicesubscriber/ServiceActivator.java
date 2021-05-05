@@ -1,58 +1,95 @@
 package servicesubscriber;
 
-import conevolumeservice.CVServicePublish;
-
 import java.util.Scanner;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
+import coneservice.ConeServicePublish;
+
 
 public class ServiceActivator implements BundleActivator {
 
 	ServiceReference serviceReference;
+	private static Scanner sc;
+	double radius, height, length, vol,surfArea;
+	int request;
+	String input;
 	
 	@Override
 	public void start(BundleContext context) throws Exception {
 
-		System.out.println(" Subscriber Service Started");
-		serviceReference = context.getServiceReference(CVServicePublish.class.getName());
-		CVServicePublish servicePublish = (CVServicePublish) context.getService(serviceReference);
+		System.out.println("Subscriber Service Started \n");
+		serviceReference = context.getServiceReference(ConeServicePublish.class.getName());
+		ConeServicePublish servicePublish = (ConeServicePublish)context.getService(serviceReference);
 
-
-		int request;
-		System.out.println("==============================================");
-		System.out.println("  Welcome to Volume & Surface Area Calculater");
-		System.out.println("==============================================");
-		System.out.println("Enter 1 to Cone!");
-		System.out.println("Enter 2 to Toblerone!");
-		System.out.println("Enter 3 to Cylinder!");
-		System.out.println("Enter 4 to Sphere!");
+		System.out.println("**************************************WELCOME TO CONE VOLUME AND SURFACE AREA CALCULATOR**************************************");
+		System.out.println("Press 1 for Cone volume calcultion !");
+		System.out.println("Press 2 for Cone surface area calcultion !");
 		System.out.println("Enter 0 to Exit!");
 
-		Scanner in = new Scanner(System.in);
-		request = in.nextInt();
+		sc  = new Scanner(System.in);
+		request = sc.nextInt();
 
 		if (request == 1) {
-		servicePublish.coneVolumeCalculater();
-
+			System.out.println("Volume Area Calculation Chosen ");
+			System.out.println("------------------------------- \n");
+		
+			System.out.println("Please Enter the Height (cm) : ");
+			sc = new Scanner(System.in);
+			height = sc.nextDouble();
+			
+			System.out.println("Please Enter the Radius (cm) : ");
+			sc = new Scanner(System.in);
+			radius = sc.nextDouble();
+			
+			servicePublish.ConeVSACalculater(request,radius,height);
+			
+			System.out.format("Do you want another Cone service ? \n");
+			sc  = new Scanner(System.in);
+			
+			input = sc.next();
+			if(input.equals("y")){
+				start(context);
+			}else {
+				stop(context);
+			}
+			
+			
 		} else if (request == 2) {
-//			servicePublish.coneVolumeCalculater();
+			System.out.println("Surface Area Calculation Chosen");
+			System.out.println("------------------------------- \n");
+		
+			System.out.println("Please Enter the Height (cm) : ");
+			sc = new Scanner(System.in);
+			height = sc.nextDouble();
+			
+			System.out.println("Please Enter the Radius (cm) : ");
+			sc = new Scanner(System.in);
+			radius = sc.nextDouble();
+			
+			servicePublish.ConeVSACalculater(request,radius,height);
+			
+			System.out.format("Do you want another Cone service ? \n");
+			sc  = new Scanner(System.in);
+			
+			input = sc.next();
+			if(input.equals("y")){
+				start(context);
+			}else {
+				stop(context);
+			}
+			
 
-		} else if (request == 3) {
-//			servicePublish.coneVolumeCalculater();
-
-		} else if (request == 4) {
-//			servicePublish.coneVolumeCalculater();
-		} else {
-
+		} else {			
+			stop(context);
 		}
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
-		System.out.println("Subscriber Service Stopped!");
+		System.out.println("Subscriber Service Stopped! \n");
 	}
 
 }

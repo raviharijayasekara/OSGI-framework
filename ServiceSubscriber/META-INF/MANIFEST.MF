@@ -5,4 +5,5 @@ Bundle-SymbolicName: ServiceSubscriber
 Bundle-Activator: servicesubscriber.ServiceActivator
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.osgi.framework,conevolumeservice
+Import-Package: coneservice,
+ org.osgi.framework
